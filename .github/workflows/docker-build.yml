@@ -14,11 +14,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2  # Checkout the repository code
+
+    - name: Install Docker
+      uses: docker/setup-buildx-action@v2
       
     - name: Log in to Azure CLI
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}  # Use an Azure service principal for authentication
+
 
     - name: Log in to Azure Container Registry
       run: |
@@ -44,7 +48,7 @@ jobs:
       run: |
         docker build -t "${{ secrets.AZURE_REGISTRY_URL }}/backend:${{ github.ref_name }}" .
       working-directory: docker
-      
+
     #push
     - name: Push Docker image to ACR #(Latest)
       run: |
