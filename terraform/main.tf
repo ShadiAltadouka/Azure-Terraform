@@ -43,3 +43,5 @@ module "aks_cluster" {
 
 # TO GET CREDENTIALS
 # az ad sp create-for-rbac --name github-actions --role Contributor --scopes /subscriptions/53a78f6a-ffcb-430f-acc6-742d98756f39/resourceGroups/nodegrouptest6695 --sdk-auth
+
+# CREDENTIALS
