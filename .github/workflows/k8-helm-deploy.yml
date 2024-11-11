@@ -1,10 +1,10 @@
 name: Deploy to AKS using Helm (Pull from ACR)
 
 on:
-    workflow_run:
-        workflows: ["Docker Image"]
-        types:
-            - completed
+  workflow_run:
+    workflows: ["Docker Image"]
+    types:
+      - completed
 
 jobs:
   deploy:
@@ -42,7 +42,7 @@ jobs:
     # Step 7: Deploy using Helm
     - name: Deploy to AKS using Helm
       run: |
-        helm upgrade --install my-release ./backend/templates \
+        helm upgrade --install my-release ./kubernetes/backend/templates \
           --set image.repository=${{ secrets.ACR_NAME }}.azurecr.io/my-app \
           --set image.tag=latest \
           --namespace default
