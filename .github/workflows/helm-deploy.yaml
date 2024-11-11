@@ -36,6 +36,20 @@ jobs:
     - name: Set up Helm
       uses: azure/setup-helm@v1
 
+    - name: Update AKS cluster (if needed)
+      run: |
+        az aks update \
+          --resource-group ${{ secrets.AKS_RESOURCE_GROUP }} \
+          --name ${{ secrets.AKS_CLUSTER_NAME }} \
+          --enable-managed-identity # Adjust this flag as needed for your scenario
+
+    - name: Assign AcrPull Role
+      run: |
+        az role assignment create \
+          --assignee ${{ secrets.AKS_PRINCIPAL_ID }} \
+          --role AcrPull \
+          --scope /subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.AKS_RESOURCE_GROUP }}/providers/Microsoft.ContainerRegistry/registries/${{ secrets.ACR_NAME }}
+
     - name: Uninstall backend release (if exists)
       run: |
         helm uninstall backend || true  # Ignore error if release does not exist
