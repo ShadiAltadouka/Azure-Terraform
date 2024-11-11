@@ -34,7 +34,7 @@ jobs:
     # Step 7: Deploy using Helm
     - name: Deploy to AKS using Helm
       run: |
-        helm upgrade --install my-release ./kubernetes/backend/templates \
+        helm upgrade --install my-release ./kubernetes/backend \
           --set image.repository=${{ secrets.ACR_NAME }}.azurecr.io/backend \
           --set image.tag=latest \
           --namespace default
