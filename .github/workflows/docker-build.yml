@@ -1,0 +1,59 @@
+name: Docker Image
+
+on:
+    push:
+        tags:
+            - '*'
+    workflow_dispatch:
+
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Checkout the repository code
+      
+    - name: Log in to Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}  # Use an Azure service principal for authentication
+
+    - name: Log in to Azure Container Registry
+      run: |
+        az acr login --name "${{ secrets.AZURE_REGISTRY_URL }}"
+
+    #build
+    - name: Build Frontend Docker image #(Latest)
+      run: |
+        docker build -t "${{ secrets.AZURE_REGISTRY_URL }}/frontend:latest" .
+
+    - name: Build Frontend Docker image #(Inctremental)
+      run: |
+        docker build -t "${{ secrets.AZURE_REGISTRY_URL }}/frontend:${{ github.ref_name }}" .
+
+    - name: Build Backend Docker image #(Latest)
+      run: |
+        docker build -t "${{ secrets.AZURE_REGISTRY_URL }}/backend:latest" .
+
+    - name: Build Backend Docker image #(Inctremental)
+      run: |
+        docker build -t "${{ secrets.AZURE_REGISTRY_URL }}/backend:${{ github.ref_name }}" .
+
+    #push
+    - name: Push Docker image to ACR #(Latest)
+      run: |
+        docker push "${{ secrets.AZURE_REGISTRY_URL }}/frontend:latest"
+
+    - name: Push Docker image to ACR #(Inctremental)
+      run: |
+        docker push "${{ secrets.AZURE_REGISTRY_URL }}/frontend:${{ github.ref_name }}"
+
+    - name: Push Backend image to ACR #(Latest)
+      run: |
+        docker push "${{ secrets.AZURE_REGISTRY_URL }}/backend:latest"
+
+    - name: Push Backend image to ACR #(Inctremental)
+      run: |
+        docker push "${{ secrets.AZURE_REGISTRY_URL }}/backend:${{ github.ref_name }}"
