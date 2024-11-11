@@ -32,22 +32,22 @@ jobs:
     - name: Build Frontend Docker image #(Latest)
       run: |
         docker build -t "${{ secrets.AZURE_REGISTRY_URL }}/frontend:latest" .
-      working-directory: docker
+      working-directory: docker/frontend
 
     - name: Build Frontend Docker image #(Inctremental)
       run: |
         docker build -t "${{ secrets.AZURE_REGISTRY_URL }}/frontend:${{ github.ref_name }}" .
-      working-directory: docker
+      working-directory: docker/frontend
 
     - name: Build Backend Docker image #(Latest)
       run: |
         docker build -t "${{ secrets.AZURE_REGISTRY_URL }}/backend:latest" .
-      working-directory: docker
+      working-directory: docker/backend
 
     - name: Build Backend Docker image #(Inctremental)
       run: |
         docker build -t "${{ secrets.AZURE_REGISTRY_URL }}/backend:${{ github.ref_name }}" .
-      working-directory: docker
+      working-directory: docker/backend
 
     #push
     - name: Push Docker image to ACR #(Latest)
