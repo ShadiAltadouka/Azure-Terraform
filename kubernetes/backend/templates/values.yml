@@ -1,8 +1,8 @@
 replicaCount: 2
 
 image:
-  repository: "myacr.azurecr.io/my-backend"  # The ACR repository
-  tag: "latest"                             # You can use dynamic values like GitHub SHA or version tags
+  repository: myacr.azurecr.io/my-backend  # The ACR repository
+  tag: latest"                            # You can use dynamic values like GitHub SHA or version tags
 
 service:
   name: backend
