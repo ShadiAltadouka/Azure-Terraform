@@ -5,6 +5,7 @@ on:
     workflows: ["Docker Image"]
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -43,7 +44,7 @@ jobs:
     - name: Deploy to AKS using Helm
       run: |
         helm upgrade --install my-release ./kubernetes/backend/templates \
-          --set image.repository=${{ secrets.ACR_NAME }}.azurecr.io/my-app \
+          --set image.repository=${{ secrets.ACR_NAME }}.azurecr.io/backend \
           --set image.tag=latest \
           --namespace default
 
