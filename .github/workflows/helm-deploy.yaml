@@ -32,14 +32,6 @@ jobs:
       run: |
         az acr login --name ${{ secrets.AZURE_REGISTRY_URL }}
 
-    # Step 5: Assign AcrPull Role (Ensure AKS has permission to pull images from ACR)
-    - name: Assign AcrPull Role
-      run: |
-        az role assignment create \
-          --assignee ${{ secrets.AKS_PRINCIPAL_ID }} \
-          --role AcrPull \
-          --scope /subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.AKS_RESOURCE_GROUP }}/providers/Microsoft.ContainerRegistry/registries/${{ secrets.ACR_NAME }}
-
     # Step 5: Install Helm
     - name: Set up Helm
       uses: azure/setup-helm@v1
