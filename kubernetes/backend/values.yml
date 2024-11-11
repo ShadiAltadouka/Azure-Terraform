@@ -1,0 +1,19 @@
+replicaCount: 2  # Number of replicas for the backend deployment
+
+image:
+  repository: myacr.azurecr.io/backend  # Replace with your ACR repository
+  tag: latest  # The image tag to deploy
+
+service:
+  name: backend
+  port: 80
+
+resources: {}
+# Specify resource requests/limits if needed, e.g.,:
+# resources:
+#   requests:
+#     memory: "256Mi"
+#     cpu: "250m"
+#   limits:
+#     memory: "512Mi"
+#     cpu: "500m"
