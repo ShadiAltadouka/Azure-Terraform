@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: {{ .Values.replicaCount }}  # Replica count can be set in values.yaml
+  selector:
+    matchLabels:
+      app: frontend  # Match label to the service selector
+  template:
+    metadata:
+      labels:
+        app: frontend  # Same label to match the service selector
+    spec:
+      containers:
+        - name: frontend
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}  # Pull from the registry
+          ports:
+            - containerPort: 80  # Typically 80 for HTTP front-end
