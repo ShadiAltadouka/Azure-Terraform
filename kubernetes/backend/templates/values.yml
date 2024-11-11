@@ -1,4 +1,0 @@
-replicaCount: 2
-image:
-  repository: localhost:5000/backend
-  tag: latest
