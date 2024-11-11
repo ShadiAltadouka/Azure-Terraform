@@ -33,15 +33,3 @@ module "aks_cluster" {
 
   depends_on = [module.resource_group]
 }
-
-
-# ssh public key for nodes
-# ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAr+1RJwE2bP9LmJ2wHFXVow3rU1hkd7P1w45p1WnFz5InD6RPHZfOxRni9Dkwp+NxkMZGf6zHv7lgE13s4Gp2Yrge9GF+P8dHiZ2tLf1wYJQ5TKJ+4fOjeH1V1qjLUaIriIEGoQ4L1P3MBa8DgHkCuW1lLnnAn8Q
-
-# TO CONNECT TO AKS VIA CLI
-# az aks get-credentials --resource-group nodegrouptest6695 --name akstest6695
-
-# TO GET CREDENTIALS
-# az ad sp create-for-rbac --name github-actions --role Contributor --scopes /subscriptions/53a78f6a-ffcb-430f-acc6-742d98756f39/resourceGroups/nodegrouptest6695 --sdk-auth
-
-# CREDENTIALS
