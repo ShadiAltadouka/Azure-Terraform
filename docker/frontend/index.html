@@ -4,10 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
-    <script src="js/app.js" defer></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-title {
+            font-weight: bold;
+        }
+
+        .task-description {
+            color: #666;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .error {
+            text-align: center;
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1>Task Manager</h1>
-    <ul id="task-list"></ul>
+
+    <header>
+        <h1>Task Manager</h1>
+        <p>Manage your tasks with ease!</p>
+    </header>
+
+    <div class="container">
+        <h2>Task List</h2>
+        <div class="loading" id="loading-message">Loading tasks...</div>
+        <ul id="task-list"></ul>
+        <div class="error" id="error-message" style="display: none;">Failed to load tasks. Please try again later.</div>
+    </div>
+
+    <script src="app.js"></script> <!-- Include the JavaScript file -->
 </body>
 </html>

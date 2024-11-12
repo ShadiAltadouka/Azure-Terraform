@@ -2,18 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  labels:
+    app: frontend
 spec:
-  replicas: {{ .Values.replicaCount }}  # Replica count can be set in values.yaml
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: frontend  # Match label to the service selector
+      app: frontend
   template:
     metadata:
       labels:
-        app: frontend  # Same label to match the service selector
+        app: frontend
     spec:
       containers:
-        - name: frontend
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}  # Pull from the registry
+        - name: nginx-frontend
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 80  # Typically 80 for HTTP front-end
+            - containerPort: 80
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
