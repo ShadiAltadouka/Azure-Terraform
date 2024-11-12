@@ -22,4 +22,4 @@ ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # Ensure flask is installed, and set the default entry point to run Flask
-CMD ["flask", "run", "--host", "0.0.0.0"]
+CMD ["python", "app.py"]
