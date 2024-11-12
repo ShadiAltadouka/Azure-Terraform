@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Copy the built frontend files to the Nginx public directory
-COPY docker/frontend /usr/share/nginx/html
+COPY . /usr/share/nginx/html
 
 # Expose port 80 for Nginx to listen on
 EXPOSE 80
