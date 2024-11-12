@@ -7,8 +7,9 @@ WORKDIR /app
 # Copy the requirements file into the container
 COPY requirements.txt .
 
-# Install the Python dependencies
-RUN pip install --upgrade pip
+# Install the Python dependencies, including Flask and others
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
 
 # Copy the entire app directory into the container
 COPY . .
@@ -20,5 +21,5 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
-# Run the Flask app
+# Ensure flask is installed, and set the default entry point to run Flask
 CMD ["flask", "run", "--host", "0.0.0.0"]

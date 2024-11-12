@@ -1,5 +1,5 @@
 async function loadTasks() {
-    const response = await fetch('http://52.148.147.73/tasks');
+    const response = await fetch('52.148.147.73/tasks');
     const tasks = await response.json();
     const taskList = document.getElementById('task-list');
     const loadingMessage = document.getElementById('loading-message');
@@ -12,7 +12,7 @@ async function loadTasks() {
 
     try {
         // Fetch tasks from the Flask backend (Replace with your actual external IP if running in Kubernetes)
-        const response = await fetch('http://52.148.147.73/tasks'); 
+        const response = await fetch('52.148.147.73/tasks'); 
         const tasks = await response.json();
         
         // Hide the loading message
