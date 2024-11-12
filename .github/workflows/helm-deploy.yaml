@@ -40,13 +40,13 @@ jobs:
     - name: Set up Helm
       uses: azure/setup-helm@v1
 
-    - name: Uninstall backend release (if exists)
-      run: |
-        helm uninstall backend || true  # Ignore error if release does not exist
+    # - name: Uninstall backend release (if exists)
+    #   run: |
+    #     helm uninstall backend || true  # Ignore error if release does not exist
 
-    - name: Uninstall frontend release (if exists)
-      run: |
-        helm uninstall frontend || true  # Ignore error if release does not exist
+    # - name: Uninstall frontend release (if exists)
+    #   run: |
+    #     helm uninstall frontend || true  # Ignore error if release does not exist
 
     # Step 6: Deploy using Helm
     - name: Deploy to AKS using Helm
