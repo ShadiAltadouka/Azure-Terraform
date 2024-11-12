@@ -5,6 +5,9 @@ on:
     workflows: ["Docker Image"]
     types:
       - completed
+  push:
+  branches:
+    - dev
   workflow_dispatch:
 
 jobs:

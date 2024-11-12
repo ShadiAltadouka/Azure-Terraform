@@ -4,9 +4,9 @@ metadata:
   name: frontend
 spec:
   selector:
-    app: frontend  # Match the label from the Deployment
+    app: frontend
   ports:
     - protocol: TCP
-      port: 80      # Port the service will expose inside the cluster
-      targetPort: 80  # Port the container is listening on
-  type: LoadBalancer  # You can change this to LoadBalancer if you want external access
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
